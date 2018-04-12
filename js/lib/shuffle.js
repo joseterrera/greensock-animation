@@ -3,17 +3,17 @@
 export const remove = count => start => arr => {
   // create a copy of the original array
   // now you're not fucking with the original when you
-  // mutate the shit out of the data
+  // mutate the data
   const arrCopy = arr.slice()
 
-  // NOW MUTATE THIS BITCH
+  // NOW MUTATE THIS
   const thisisWhatIsSpliceOut = arrCopy.splice(start, count)
 
   // this now no longer has the spliced out item, we want this
   const whatRemains = arrCopy
 
   // This seems confusing because arrCopy is mutated by
-  // the dangerous mutating function splcie
+  // the dangerous mutating function splce
   return [thisisWhatIsSpliceOut, whatRemains]
 }
 
@@ -36,7 +36,14 @@ export const simpleStateClosure = fn => initialState => {
   return getNextShuffleItem(initialState)(state)
 }
 
-// generator function
+// generator function - a function that can be paused and resumed, so that other code can run in between.
+//it will not execute the body of the function. Instead, it will return a generator object called an iterator,
+//which is an object that controls the exeuciotn of the generation via .next()
+
+//A generator allows you to treat your function like a program, that can be used following the rules that one defines.
+
+//To execute a program , we need an interpreter, that will give that special behavior that we want.
+//yield is a command to the interpreter.
 export const getNextShuffleItem = initialState => state => () => {
   const [thisisWhatIsSpliceOut, whatRemains] = remove1RandomItem(state)
   state = whatRemains.length ? whatRemains : initialState

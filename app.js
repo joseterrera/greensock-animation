@@ -1,14 +1,24 @@
 
 
-import {TweenMax, TweenLite,TimelineMax } from "gsap";
+// import {TweenMax, TweenLite,TimelineMax, CSSPLugin } from "gsap";
+
+// import { ThrowPropsPlugin} from "gsap";
+
 
 import { remove, remove1, remove1RandomItem, shuffle, getNextShuffledItemGenerator } from './js/lib/shuffle'
 
 import { flatten } from './js/lib/helpers'
 
 import {selector, fSelector, selectMultiple} from './js/lib/selector'
+import{ CustomEase } from '/js/lib/CustomEase.js'
+import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
+
+// import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
+import { ThrowPropsPlugin } from '/js/lib/ThrowPropsPlugin.js'
 
 
+
+// const CustomWiggle = require('/js/lib/CustomWiggle.js')
 // const ThrowPropsPlugin = require( 'gsap/ThrowPropsPlugin');
 
 // import {ass} from './js/dope'
@@ -50,7 +60,11 @@ const yellowFlowersArray = selector('.cls-187');
 
 // const eyes = selector('.cls-16');
 const eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3','#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
-console.log(eyes);
+// console.log(eyes);
+
+const eggs = selectMultiFromDocument('#egg1', '#egg2', '#egg3','#egg4', '#egg5', '#egg6', '#egg7', '#egg8', '#egg9', '#egg10');
+// console.log(eggs);
+
 
 function clearStage() {
   var clearTl = new TimelineMax();
@@ -155,10 +169,38 @@ function birdsEating() {
 
 
   function bunnyInTheBack() {
-    const bunnyInTheBackTl = new TimelineMax();
-    bunnyInTheBackTl.to('#bunnyInTheBack', 1, {y:850})
-
+    const bunnyInTheBackTl = new TimelineMax({repeat:-1, repeatDelay: 10});
+    bunnyInTheBackTl
+    .to('#bunnyInTheBack', 1, {y:85})
+    .to('#bunnyInTheBack', 1, {y:"-=85"})
     return bunnyInTheBackTl;
+  }
+
+
+  function eggsShaking() {
+    const eggsShakingTl = new TimelineMax({repeat:-1, repeatDelay: 3});
+    eggsShakingTl
+    shuffle(eggs).forEach( egg =>eggsShakingTl
+      .to(egg, 0.1, {x:"+=20", yoyo:true, repeat:5}, '+=5')
+    )
+    // .to("#egg6", 1, {x: 400});
+    return eggsShakingTl;
+  }
+
+
+  CustomWiggle.create("wiggle", {wiggles:5});
+  TweenMax.to("#basket", 4, {x:300, ease: "wiggle"});
+
+  function bunnyHand() {
+    const bunnyHandTl = new TimelineMax();
+    bunnyHandTl
+      .to("#bunnyHand", 0.5, {x: -10})
+      .to("#bunnyHand", 0.5, {x: 10})
+      // .to("#basket", 1, {x:"+=20", yoyo:true, repeat:5}, '+=0.001')
+      
+      
+            
+      return bunnyHandTl;
   }
 
 
@@ -171,7 +213,11 @@ function birdsEating() {
     // .add(birdsEating(), "birds-eating")
     .add(cloudsMoving(),  'clouds-moving')
     .add( flowerDance(), 0)
-    .add(bunnyInTheBack(), 'bunny-in-the-back');
+    .add(bunnyHand(), 'bunny-hand')
+    
+    .add(bunnyInTheBack(), 'bunny-in-the-back')
+    .add(eggsShaking(), 'eggs-shaking')
+    ;
     
   }
  

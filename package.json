@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dope": "^2.2.2",
-    "gsap": "^1.20.4"
+    "gsap": "^1.20.4",
+    "js": "^0.1.0"
   }
 }
