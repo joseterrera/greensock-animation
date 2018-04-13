@@ -77,7 +77,7 @@ parcelRequire = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({9:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -160,7 +160,7 @@ var getNextShuffleItem = exports.getNextShuffleItem = function getNextShuffleIte
 var getNextShuffledItemGenerator = exports.getNextShuffledItemGenerator = simpleStateClosure(getNextShuffleItem);
 
 // export const getNextShuffledItem = getNextShuffledItemGenerator([1,2,3,4,5,6])
-},{}],7:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -171,7 +171,7 @@ var flatten = exports.flatten = function flatten(multiList) {
     return acc.concat(item);
   }, []);
 };
-},{}],8:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -202,7 +202,7 @@ var selectMultiple = exports.selectMultiple = function selectMultiple(context) {
     return (0, _helpers.flatten)(queries.map(fSelector(context)));
   };
 };
-},{"./helpers":7}],10:[function(require,module,exports) {
+},{"./helpers":10}],12:[function(require,module,exports) {
 var global = (1,eval)("this");
 /*!
  * VERSION: 1.20.4
@@ -2146,7 +2146,7 @@ var global = (1,eval)("this");
 		_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
-},{}],5:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 var global = (1,eval)("this");
 /*!
  * VERSION: 0.2.2
@@ -2575,7 +2575,7 @@ var _gsScope = typeof module !== "undefined" && module.exports && typeof global 
 		define(["gsap/TweenLite"], getGlobal);
 	}
 })("CustomEase");
-},{"gsap/TweenLite":10}],17:[function(require,module,exports) {
+},{"gsap/TweenLite":12}],7:[function(require,module,exports) {
 var global = (1,eval)("this");
 /*!
  * VERSION: 0.2.1
@@ -2716,7 +2716,7 @@ var _gsScope = typeof module !== "undefined" && module.exports && typeof global 
 		define(["gsap/TweenLite", "./CustomEase"], getGlobal);
 	}
 })("CustomWiggle");
-},{"./CustomEase":5,"gsap/TweenLite":10}],22:[function(require,module,exports) {
+},{"./CustomEase":6,"gsap/TweenLite":12}],8:[function(require,module,exports) {
 var global = (1,eval)("this");
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -2948,6 +2948,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 // import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
 
 
+// import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
+
+
 var _shuffle = require('./js/lib/shuffle');
 
 var _helpers = require('./js/lib/helpers');
@@ -2956,9 +2959,15 @@ var _selector = require('./js/lib/selector');
 
 var _CustomEase = require('/js/lib/CustomEase.js');
 
+var _CustomEase2 = _interopRequireDefault(_CustomEase);
+
 var _CustomWiggle = require('/js/lib/CustomWiggle.js');
 
+var _CustomWiggle2 = _interopRequireDefault(_CustomWiggle);
+
 var _ThrowPropsPlugin = require('/js/lib/ThrowPropsPlugin.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // const CustomWiggle = require('/js/lib/CustomWiggle.js')
 // const ThrowPropsPlugin = require( 'gsap/ThrowPropsPlugin');
@@ -2969,8 +2978,6 @@ var _ThrowPropsPlugin = require('/js/lib/ThrowPropsPlugin.js');
 
 var main = function main(event) {
   // const flowers = document.querySelectorAll('.cls-187');
-
-
   var add = function add(a, b, c) {
     return a + b + c;
   };
@@ -2993,21 +3000,13 @@ var main = function main(event) {
   var flowers = selectMultiFromDocument('.cls-186', '.cls-186');
   var peak = selectMultiFromDocument('.cls-182', '.cls-188');
   var clouds = (0, _selector.selector)('g#clouds');
-  // console.log(clouds);
+
   var cloud1 = document.querySelector('g#cloud1');
   var cloud2Shadow = document.querySelector("g#cloud2-shadow");
   var cloud1Shadow = document.querySelector("g#cloud1-shadow");
 
-  // console.log(cloud2Shadow);
-
-
   var flowersArray = (0, _selector.selector)('.cls-186');
   var yellowFlowersArray = (0, _selector.selector)('.cls-187');
-  // const flowers = $selector('.cls-186', '.cls-187');
-  // console.log(flowers);
-
-
-  // const eyes = selector('.cls-16');
   var eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3', '#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
   // console.log(eyes);
 
@@ -3017,11 +3016,9 @@ var main = function main(event) {
 
   function clearStage() {
     var clearTl = new TimelineMax();
-
     clearTl.set(flowersArray, { autoAlpha: 0 }).set(yellowFlowersArray, { autoAlpha: 0 })
     // .set(clouds, {left:-200, opacity:0});
     .set(cloud1, { x: '-1200', autoAlpha: 0.5 }).set(cloud1Shadow, { x: '-2400', autoAlpha: 1 }).set(cloud2, { x: '-=3600', autoAlpha: 0.5 }).set(cloud2Shadow, { x: '-=1400', autoAlpha: 1 });
-
     return clearTl;
   }
 
@@ -3101,14 +3098,33 @@ var main = function main(event) {
     return eggsShakingTl;
   }
 
-  _CustomWiggle.CustomWiggle.create("wiggle", { wiggles: 5 });
-  TweenMax.to("#basket", 4, { x: 300, ease: "wiggle" });
+  // TweenMax.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
+
+  // var tl = new TimelineMax({repeat:50, repeatDelay:1, delay:1});
+  // tl.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
+
 
   function bunnyHand() {
+    // function wiggle(id, duration) {
+    //   var tl = new TimelineLite();
+    //   tl.to("#" + id, duration, {rotation:30, ease:"Wiggle.easeOut" })
+    //   return tl;
+    // }
+    // const wiggles = 4;
+    // CustomWiggle.create("Wiggle.easeOut", {wiggles:wiggles, type:"easeOut"});
+    _CustomWiggle2.default.create("theWiggle", { wiggles: 2 });
     var bunnyHandTl = new TimelineMax();
-    bunnyHandTl.to("#bunnyHand", 0.5, { x: -10 }).to("#bunnyHand", 0.5, { x: 10 });
-    // .to("#basket", 1, {x:"+=20", yoyo:true, repeat:5}, '+=0.001')
+    bunnyHandTl.to("#bunnyHand", 0.5, { x: -10 }).to("#bunnyHand", 0.5, { x: 10 })
+    // .to("#basket", 4,  {rotation:30, ease:"myWiggle"})
 
+    // .add(wiggle("basket", 3))
+    // .to("#basket", 1, {rotation:"-=30", transformOrigin:"100% 0%", smoothOrigin:true})
+    // .to("#basket", 1, {rotation:"+=30", transformOrigin:"0px 0px"});   
+    // .add("rotate1")         
+    // .to("#basket", 0.3, {rotation:"-=10", transformOrigin:"right bottom"}, "rotate1")
+    // .add("rotate2")
+    // .to("#basket", 1, {rotation:"+=10", transformOrigin:"right bottom"}, "rotate2")
+    .to("#basket", 1, { y: -10, rotation: 10, ease: "theWiggle" }, "-=0.6").to("#redEggBasket", 2, { x: 10, y: 100, ease: Power2.easeOut }, "-=0.8");
 
     return bunnyHandTl;
   }
@@ -3125,7 +3141,7 @@ var main = function main(event) {
 };
 
 document.addEventListener('DOMContentLoaded', main);
-},{"./js/lib/shuffle":6,"./js/lib/helpers":7,"./js/lib/selector":8,"/js/lib/CustomEase.js":5,"/js/lib/CustomWiggle.js":17,"/js/lib/ThrowPropsPlugin.js":22}],23:[function(require,module,exports) {
+},{"./js/lib/shuffle":9,"./js/lib/helpers":10,"./js/lib/selector":11,"/js/lib/CustomEase.js":6,"/js/lib/CustomWiggle.js":7,"/js/lib/ThrowPropsPlugin.js":8}],37:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -3155,7 +3171,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52464' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65073' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -3294,5 +3310,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[23,2])
+},{}]},{},[37,2])
 //# sourceMappingURL=/app.2b424ac9.map

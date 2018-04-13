@@ -10,8 +10,9 @@ import { remove, remove1, remove1RandomItem, shuffle, getNextShuffledItemGenerat
 import { flatten } from './js/lib/helpers'
 
 import {selector, fSelector, selectMultiple} from './js/lib/selector'
-import{ CustomEase } from '/js/lib/CustomEase.js'
-import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
+import CustomEase  from '/js/lib/CustomEase.js'
+// import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
+import CustomWiggle from '/js/lib/CustomWiggle.js';
 
 // import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
 import { ThrowPropsPlugin } from '/js/lib/ThrowPropsPlugin.js'
@@ -27,11 +28,6 @@ import { ThrowPropsPlugin } from '/js/lib/ThrowPropsPlugin.js'
 
 const main = (event) => {
 // const flowers = document.querySelectorAll('.cls-187');
-
-
-
-
-
 const add = (a,b,c) => a + b +c 
 const curriedAdd = a => b => c => add(a,b,c)
 const curry = (fn,...args) => args.length >= fn.length 
@@ -43,22 +39,13 @@ const selectMultiFromDocument = selectMultiple(document)
 const flowers = selectMultiFromDocument( '.cls-186', '.cls-186' )
 const peak = selectMultiFromDocument('.cls-182', '.cls-188');
 const clouds = selector('g#clouds');
-// console.log(clouds);
+
 const cloud1 = document.querySelector('g#cloud1');
 const cloud2Shadow = document.querySelector("g#cloud2-shadow");
 const cloud1Shadow = document.querySelector("g#cloud1-shadow");
 
-
-// console.log(cloud2Shadow);
-
-
 const flowersArray = selector('.cls-186');
 const yellowFlowersArray = selector('.cls-187');
-// const flowers = $selector('.cls-186', '.cls-187');
-// console.log(flowers);
-
-
-// const eyes = selector('.cls-16');
 const eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3','#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
 // console.log(eyes);
 
@@ -68,7 +55,6 @@ const eggs = selectMultiFromDocument('#egg1', '#egg2', '#egg3','#egg4', '#egg5',
 
 function clearStage() {
   var clearTl = new TimelineMax();
-
   clearTl
   .set(flowersArray, {autoAlpha: 0})
   .set(yellowFlowersArray, {autoAlpha: 0})
@@ -78,10 +64,6 @@ function clearStage() {
 
   .set(cloud2, {x:'-=3600', autoAlpha:0.5})
   .set(cloud2Shadow, {x: '-=1400', autoAlpha:1})
-  
-  
-  
-
   return clearTl;
   }
 
@@ -94,9 +76,6 @@ function clearStage() {
           .fromTo(flowersArray, 1, {autoAlpha:0, scaleY:0.2, transformOrigin: 'center center'}, {autoAlpha:1, scaleY:1, transformOrigin: 'center center', ease: Back.easeInOut, onComplete: startBlinking})
           .fromTo(yellowFlowersArray, 1, {autoAlpha:0, scaleX:0.2, transformOrigin: 'center center'}, {autoAlpha:1, scaleX:1, transformOrigin: 'center center', ease: Back.easeInOut}, "-=0.9")
 
-          
-          
-      
           return enterFloorVegetationTl;
   }
 
@@ -188,20 +167,46 @@ function birdsEating() {
   }
 
 
-  CustomWiggle.create("wiggle", {wiggles:5});
-  TweenMax.to("#basket", 4, {x:300, ease: "wiggle"});
+
+
+  // TweenMax.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
+
+  // var tl = new TimelineMax({repeat:50, repeatDelay:1, delay:1});
+  // tl.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
+
+  
+
 
   function bunnyHand() {
+    // function wiggle(id, duration) {
+    //   var tl = new TimelineLite();
+    //   tl.to("#" + id, duration, {rotation:30, ease:"Wiggle.easeOut" })
+    //   return tl;
+    // }
+    // const wiggles = 4;
+    // CustomWiggle.create("Wiggle.easeOut", {wiggles:wiggles, type:"easeOut"});
+    CustomWiggle.create("theWiggle", {wiggles:2});
     const bunnyHandTl = new TimelineMax();
     bunnyHandTl
       .to("#bunnyHand", 0.5, {x: -10})
       .to("#bunnyHand", 0.5, {x: 10})
-      // .to("#basket", 1, {x:"+=20", yoyo:true, repeat:5}, '+=0.001')
+      // .to("#basket", 4,  {rotation:30, ease:"myWiggle"})
       
+      // .add(wiggle("basket", 3))
+      // .to("#basket", 1, {rotation:"-=30", transformOrigin:"100% 0%", smoothOrigin:true})
+      // .to("#basket", 1, {rotation:"+=30", transformOrigin:"0px 0px"});   
+      // .add("rotate1")         
+      // .to("#basket", 0.3, {rotation:"-=10", transformOrigin:"right bottom"}, "rotate1")
+      // .add("rotate2")
+      // .to("#basket", 1, {rotation:"+=10", transformOrigin:"right bottom"}, "rotate2")
+      .to("#basket", 1, {y:-10, rotation:10, ease:"theWiggle"}, "-=0.6")
+      .to("#redEggBasket", 2 ,{x:10, y: 100, ease:Power2.easeOut}, "-=0.8")
       
-            
       return bunnyHandTl;
+    
   }
+
+
 
 
   function go() {
