@@ -44,6 +44,8 @@ const cloud1 = document.querySelector('g#cloud1');
 const cloud2Shadow = document.querySelector("g#cloud2-shadow");
 const cloud1Shadow = document.querySelector("g#cloud1-shadow");
 
+const closedEgg = document.querySelector('path.cls-198.closed-egg');
+console.log(closedEgg);
 const flowersArray = selector('.cls-186');
 const yellowFlowersArray = selector('.cls-187');
 const eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3','#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
@@ -64,6 +66,16 @@ function clearStage() {
 
   .set(cloud2, {x:'-=3600', autoAlpha:0.5})
   .set(cloud2Shadow, {x: '-=1400', autoAlpha:1})
+  // .set("#chickenHead", {autoAlpha: 0})
+  .set("#chickenHead2", {autoAlpha: 0})
+  .set(closedEgg, { fill: "#F0D7BF" })
+  // .set("#chickenBody", {autoAlpha: 0})
+  
+  // .set("#topEggShell", {y:120, rotate: 100})
+  .set("#topEggShell2", {y:45})
+  
+  // .set("#topEggShellb", {y:120, rotate: 100})
+  
   return clearTl;
   }
 
@@ -183,27 +195,20 @@ function birdsEating() {
     //   tl.to("#" + id, duration, {rotation:30, ease:"Wiggle.easeOut" })
     //   return tl;
     // }
-    // const wiggles = 4;
-    // CustomWiggle.create("Wiggle.easeOut", {wiggles:wiggles, type:"easeOut"});
     CustomWiggle.create("theWiggle", {wiggles:2});
     const bunnyHandTl = new TimelineMax();
     bunnyHandTl
       .to("#bunnyHand", 0.5, {x: -10})
       .to("#bunnyHand", 0.5, {x: 10})
-      // .to("#basket", 4,  {rotation:30, ease:"myWiggle"})
-      
-      // .add(wiggle("basket", 3))
-      // .to("#basket", 1, {rotation:"-=30", transformOrigin:"100% 0%", smoothOrigin:true})
-      // .to("#basket", 1, {rotation:"+=30", transformOrigin:"0px 0px"});   
-      // .add("rotate1")         
-      // .to("#basket", 0.3, {rotation:"-=10", transformOrigin:"right bottom"}, "rotate1")
-      // .add("rotate2")
-      // .to("#basket", 1, {rotation:"+=10", transformOrigin:"right bottom"}, "rotate2")
       .to("#basket", 1, {y:-10, rotation:10, ease:"theWiggle"}, "-=0.6")
       .to("#redEggBasket", 2 ,{x:10, y: 100, ease:Power2.easeOut}, "-=0.8")
       
       return bunnyHandTl;
     
+  }
+
+  function eggPopping() {
+
   }
 
 

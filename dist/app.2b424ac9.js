@@ -3005,6 +3005,8 @@ var main = function main(event) {
   var cloud2Shadow = document.querySelector("g#cloud2-shadow");
   var cloud1Shadow = document.querySelector("g#cloud1-shadow");
 
+  var closedEgg = document.querySelector('path.cls-198.closed-egg');
+  console.log(closedEgg);
   var flowersArray = (0, _selector.selector)('.cls-186');
   var yellowFlowersArray = (0, _selector.selector)('.cls-187');
   var eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3', '#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
@@ -3018,7 +3020,16 @@ var main = function main(event) {
     var clearTl = new TimelineMax();
     clearTl.set(flowersArray, { autoAlpha: 0 }).set(yellowFlowersArray, { autoAlpha: 0 })
     // .set(clouds, {left:-200, opacity:0});
-    .set(cloud1, { x: '-1200', autoAlpha: 0.5 }).set(cloud1Shadow, { x: '-2400', autoAlpha: 1 }).set(cloud2, { x: '-=3600', autoAlpha: 0.5 }).set(cloud2Shadow, { x: '-=1400', autoAlpha: 1 });
+    .set(cloud1, { x: '-1200', autoAlpha: 0.5 }).set(cloud1Shadow, { x: '-2400', autoAlpha: 1 }).set(cloud2, { x: '-=3600', autoAlpha: 0.5 }).set(cloud2Shadow, { x: '-=1400', autoAlpha: 1 })
+    // .set("#chickenHead", {autoAlpha: 0})
+    .set("#chickenHead2", { autoAlpha: 0 }).set(closedEgg, { fill: "#F0D7BF" })
+    // .set("#chickenBody", {autoAlpha: 0})
+
+    // .set("#topEggShell", {y:120, rotate: 100})
+    .set("#topEggShell2", { y: 45 });
+
+    // .set("#topEggShellb", {y:120, rotate: 100})
+
     return clearTl;
   }
 
@@ -3110,24 +3121,14 @@ var main = function main(event) {
     //   tl.to("#" + id, duration, {rotation:30, ease:"Wiggle.easeOut" })
     //   return tl;
     // }
-    // const wiggles = 4;
-    // CustomWiggle.create("Wiggle.easeOut", {wiggles:wiggles, type:"easeOut"});
     _CustomWiggle2.default.create("theWiggle", { wiggles: 2 });
     var bunnyHandTl = new TimelineMax();
-    bunnyHandTl.to("#bunnyHand", 0.5, { x: -10 }).to("#bunnyHand", 0.5, { x: 10 })
-    // .to("#basket", 4,  {rotation:30, ease:"myWiggle"})
-
-    // .add(wiggle("basket", 3))
-    // .to("#basket", 1, {rotation:"-=30", transformOrigin:"100% 0%", smoothOrigin:true})
-    // .to("#basket", 1, {rotation:"+=30", transformOrigin:"0px 0px"});   
-    // .add("rotate1")         
-    // .to("#basket", 0.3, {rotation:"-=10", transformOrigin:"right bottom"}, "rotate1")
-    // .add("rotate2")
-    // .to("#basket", 1, {rotation:"+=10", transformOrigin:"right bottom"}, "rotate2")
-    .to("#basket", 1, { y: -10, rotation: 10, ease: "theWiggle" }, "-=0.6").to("#redEggBasket", 2, { x: 10, y: 100, ease: Power2.easeOut }, "-=0.8");
+    bunnyHandTl.to("#bunnyHand", 0.5, { x: -10 }).to("#bunnyHand", 0.5, { x: 10 }).to("#basket", 1, { y: -10, rotation: 10, ease: "theWiggle" }, "-=0.6").to("#redEggBasket", 2, { x: 10, y: 100, ease: Power2.easeOut }, "-=0.8");
 
     return bunnyHandTl;
   }
+
+  function eggPopping() {}
 
   function go() {
     console.log('hey...');
@@ -3141,7 +3142,7 @@ var main = function main(event) {
 };
 
 document.addEventListener('DOMContentLoaded', main);
-},{"./js/lib/shuffle":9,"./js/lib/helpers":10,"./js/lib/selector":11,"/js/lib/CustomEase.js":6,"/js/lib/CustomWiggle.js":7,"/js/lib/ThrowPropsPlugin.js":8}],37:[function(require,module,exports) {
+},{"./js/lib/shuffle":9,"./js/lib/helpers":10,"./js/lib/selector":11,"/js/lib/CustomEase.js":6,"/js/lib/CustomWiggle.js":7,"/js/lib/ThrowPropsPlugin.js":8}],54:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -3310,5 +3311,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[37,2])
+},{}]},{},[54,2])
 //# sourceMappingURL=/app.2b424ac9.map
