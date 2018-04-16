@@ -10,29 +10,27 @@ import { remove, remove1, remove1RandomItem, shuffle, getNextShuffledItemGenerat
 import { flatten } from './js/lib/helpers'
 
 import {selector, fSelector, selectMultiple} from './js/lib/selector'
-import CustomEase  from '/js/lib/CustomEase.js'
-// import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
-import CustomWiggle from '/js/lib/CustomWiggle.js';
+import CustomEase  from './js/lib/CustomEase.js'
+// import{ CustomWiggle } from './js/lib/CustomWiggle.js'
+import CustomWiggle from './js/lib/CustomWiggle.js';
 
-// import{ CustomWiggle } from '/js/lib/CustomWiggle.js'
-import { ThrowPropsPlugin } from '/js/lib/ThrowPropsPlugin.js'
+// import{ CustomWiggle } from './js/lib/CustomWiggle.js'
+import { ThrowPropsPlugin } from './js/lib/ThrowPropsPlugin.js'
 
 
 
-// const CustomWiggle = require('/js/lib/CustomWiggle.js')
+// const CustomWiggle = require('./js/lib/CustomWiggle.js')
 // const ThrowPropsPlugin = require( 'gsap/ThrowPropsPlugin');
 
-// import {ass} from './js/dope'
 
-// console.log(ass)
 
 const main = (event) => {
 // const flowers = document.querySelectorAll('.cls-187');
-const add = (a,b,c) => a + b +c 
-const curriedAdd = a => b => c => add(a,b,c)
-const curry = (fn,...args) => args.length >= fn.length 
-  ? fn(...args)
-  : curry.bind(null,fn,...args)
+// const add = (a,b,c) => a + b +c 
+// const curriedAdd = a => b => c => add(a,b,c)
+// const curry = (fn,...args) => args.length >= fn.length 
+//   ? fn(...args)
+//   : curry.bind(null,fn,...args)
 
 
 const selectMultiFromDocument = selectMultiple(document)
@@ -45,14 +43,15 @@ const cloud2Shadow = document.querySelector("g#cloud2-shadow");
 const cloud1Shadow = document.querySelector("g#cloud1-shadow");
 
 const closedEgg = document.querySelector('path.cls-198.closed-egg');
-console.log(closedEgg);
+// console.log(closedEgg);
 const flowersArray = selector('.cls-186');
 const yellowFlowersArray = selector('.cls-187');
 const eyes = selectMultiFromDocument('#eyes1', '#eyes2', '#eyes3','#eyes4', '#eyes5', '#eyes6', '#eyes7', '#eyes8', '#eyes9', '#eyes10', '#eyes11', '#eyes12', '#eyes13', '#eyes14');
 // console.log(eyes);
 
 const eggs = selectMultiFromDocument('#egg1', '#egg2', '#egg3','#egg4', '#egg5', '#egg6', '#egg7', '#egg8', '#egg9', '#egg10');
-// console.log(eggs);
+// const eggs2 = document.querySelectorAll( '#egg1,  #egg2, #egg3, #egg4,  #egg5,  #egg6,  #egg7,  #egg8,  #egg9, #egg10');
+// console.log(...eggs2);
 
 
 function clearStage() {
@@ -60,27 +59,54 @@ function clearStage() {
   clearTl
   .set(flowersArray, {autoAlpha: 0})
   .set(yellowFlowersArray, {autoAlpha: 0})
-  // .set(clouds, {left:-200, opacity:0});
-  .set(cloud1, {x:'-1200', autoAlpha:0.5})
-  .set(cloud1Shadow, {x:'-2400', autoAlpha:1})
+  // .set(cloud1, {x: "-=1200", autoAlpha:0.5})
+  .set(cloud1Shadow, {x: "-=2000", autoAlpha:0})
 
-  .set(cloud2, {x:'-=3600', autoAlpha:0.5})
-  .set(cloud2Shadow, {x: '-=1400', autoAlpha:1})
-  // .set("#chickenHead", {autoAlpha: 0})
+  // .set(cloud2, {x:'-=2800', autoAlpha:0.5})
+  .set(cloud2Shadow, {x: -1200, autoAlpha:0})
   .set("#chickenHead2", {autoAlpha: 0})
   .set(closedEgg, { fill: "#F0D7BF" })
-  // .set("#chickenBody", {autoAlpha: 0})
-  
-  // .set("#topEggShell", {y:120, rotate: 100})
   .set("#topEggShell2", {y:45})
-  
-  // .set("#topEggShellb", {y:120, rotate: 100})
   
   return clearTl;
   }
 
-  const cloudShadow = selectMultiFromDocument("g#cloud1-shadow", "g#cloud1");
-  // console.log('classy',cloudShadow);
+
+const together = document.querySelectorAll("#cloud1", "#cloud1-shadow");
+const togetherArray = selectMultiFromDocument("#cloud1","#cloud1-shadow");
+console.log(togetherArray);
+
+  //clouds moving 
+  function cloudsMoving() {
+    // const cloudsMovingTl = new TimelineMax({repeat:-1,  repeatDelay: -6 });
+          //  cloudsMovingTl
+          //  .add('beginning')
+          //  .to(cloud1, 1, {autoAlpha:1})
+          //  .to(cloud1Shadow, 1, {autoAlpha:1})
+            // .to(cloud1, 20 , {x:2700, ease:Linear.easeNone}, 0)
+            // .to(cloud1Shadow, 25 , {x:2700, ease:Linear.easeNone}, 0)
+          
+           
+           
+   
+          //  .to(cloud2, 1, {autoAlpha:1})
+          //  .to(cloud2Shadow, 1, {autoAlpha:1})
+            // .to(cloud2, 46 , {x: 2700, ease:Linear.easeNone}, 0)
+            // .to(cloud2Shadow, 40 , {x:2700, ease:Linear.easeNone}, 0)
+
+            const cloudsMovingTl  = new TimelineMax({repeat: -1});
+            cloudsMovingTl
+            .fromTo("#cloud1", 30 , {x:-1800}, {x:3000, ease:Linear.easeNone, repeat:-1}, 0)
+            .fromTo("#cloud2", 40 , {x:-1800}, {x:3000, ease:Linear.easeNone, repeat:-1}, 0);
+            
+
+   
+           return cloudsMovingTl;
+     }
+  
+
+  // const cloudShadow = selectMultiFromDocument("g#cloud1-shadow", "g#cloud1");
+
  
   function enterFloorVegetation() {
     const enterFloorVegetationTl = new TimelineMax();
@@ -102,9 +128,8 @@ const flowerDance = () => {
     
   return new TimelineMax({repeat:-1, repeatDelay: 1})
   .to(removeItems1, 1, {throwProps:{rotation:360}})
-  // .to(removeItems1, 1, {y:0, rotation:32, x:'-=1'}, 0)
   .to(removeItems2, 1, {throwProps:{rotation:360}}, '-=0.5')
-  // .to(removeItems2, 1, {y:0, rotation:32, x:'+=1'}, '-=0.2')
+
     
 }
 
@@ -113,8 +138,6 @@ const flowerDance = () => {
 function birdsEating() {
   var birdsEatingTl = new TimelineMax({repeat:-1, repeatDelay: 4});
   birdsEatingTl
-  // .set(peak, {rotation:12})
-  // .set(peak, { rotation: 0})
   .to(peak, 1.4, {y:'+=3'}, '+=0.1')
   .to(peak, 1.4, {y:'-=3'}, '+=0.1')
   
@@ -139,24 +162,6 @@ function birdsEating() {
 
 
 
-  //clouds moving 
-  function cloudsMoving() {
- const cloudsMovingTl = new TimelineMax({repeat:-1}, Math.random()*5);
-        cloudsMovingTl
-        .to(cloud1, 14, {autoAlpha:1})
-        .to(cloud1Shadow, 14, {autoAlpha:1})
-
-        .to(cloud2, 14, {autoAlpha:1})
-        .to(cloud2Shadow, 14, {autoAlpha:1})
-
-         .to(cloud1, 40 , {x:"+=3000", ease:Linear.easeNone}, 0)
-         .to(cloud1Shadow, 40 , {x:"+=3000", ease:Linear.easeNone}, 0)
-         .to(cloud2, 60 , {x:"+=3000", ease:Linear.easeNone}, 0)
-         .to(cloud2Shadow, 60 , {x:"+=3000", ease:Linear.easeNone}, 0)
-         
-
-        return cloudsMovingTl;
-  }
 
 
   function bunnyInTheBack() {
@@ -174,27 +179,11 @@ function birdsEating() {
     shuffle(eggs).forEach( egg =>eggsShakingTl
       .to(egg, 0.1, {x:"+=20", yoyo:true, repeat:5}, '+=5')
     )
-    // .to("#egg6", 1, {x: 400});
     return eggsShakingTl;
   }
 
 
-
-
-  // TweenMax.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
-
-  // var tl = new TimelineMax({repeat:50, repeatDelay:1, delay:1});
-  // tl.to("#basket", 4, {x:10, y:10, ease: "wiggle"});
-
-  
-
-
   function bunnyHand() {
-    // function wiggle(id, duration) {
-    //   var tl = new TimelineLite();
-    //   tl.to("#" + id, duration, {rotation:30, ease:"Wiggle.easeOut" })
-    //   return tl;
-    // }
     CustomWiggle.create("theWiggle", {wiggles:2});
     const bunnyHandTl = new TimelineMax();
     bunnyHandTl
@@ -213,18 +202,17 @@ function birdsEating() {
 
 
 
-
   function go() {
     console.log('hey...')
     var masterTl  = new TimelineMax();
     masterTl 
     .add(clearStage(), 'scene-clear-stage')
-    .add(enterFloorVegetation(), 'scene-floor-vegetation')
-    // .add(birdsEating(), "birds-eating")
     .add(cloudsMoving(),  'clouds-moving')
+    .add(enterFloorVegetation(), 'scene-floor-vegetation')
+    .add(birdsEating(), "birds-eating")
+
     .add( flowerDance(), 0)
     .add(bunnyHand(), 'bunny-hand')
-    
     .add(bunnyInTheBack(), 'bunny-in-the-back')
     .add(eggsShaking(), 'eggs-shaking')
     ;

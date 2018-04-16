@@ -1,2 +1,2 @@
 console.log('asd')
-export const ass = 1
+export const asd = 1
